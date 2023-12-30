@@ -1,0 +1,3 @@
+[submodule "chapter03-jdpc-template"]
+	path = chapter03-jdpc-template
+	url = https://github.com/phuongsover1/taco-cloud-spring-in-action
