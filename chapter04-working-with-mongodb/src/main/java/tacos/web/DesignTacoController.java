@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import tacos.TacoUDRUtils;
 import tacos.data.IngredientRepository;
 import tacos.domain.Ingredient;
 import tacos.domain.Ingredient.Type;
@@ -29,7 +28,6 @@ import tacos.domain.TacoOrder;
 public class DesignTacoController {
 
   private final IngredientRepository ingredientRepository;
-
 
   public DesignTacoController(IngredientRepository ingredientRepository) {
     this.ingredientRepository = ingredientRepository;
@@ -70,7 +68,7 @@ public class DesignTacoController {
 
     if (errors.hasErrors())
       return "design";
-    tacoOrder.addTaco(TacoUDRUtils.toTacoUDT(design));
+    tacoOrder.addTaco(design);
     return "redirect:/orders/current";
   }
 
