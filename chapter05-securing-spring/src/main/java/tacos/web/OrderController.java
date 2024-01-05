@@ -1,6 +1,7 @@
 package tacos.web;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -37,14 +38,13 @@ public class OrderController {
     }
 
     @PostMapping
-    public String processOrder(@Valid TacoOrder order, Errors errors, SessionStatus sessionStatus, Authentication authentication) {
+    public String processOrder(@Valid TacoOrder order, Errors errors, SessionStatus sessionStatus, @AuthenticationPrincipal User user) {
         log.info("Order submittted: " + order);
 
         if (errors.hasErrors()) {
             return "orderForm";
         }
 
-        User user = (User) authentication.getPrincipal();
         order.setUser(user);
         orderRepo.save(order);
         sessionStatus.setComplete();
