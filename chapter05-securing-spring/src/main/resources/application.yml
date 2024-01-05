@@ -11,6 +11,11 @@ spring:
     properties:
       hibernate:
         globally_quoted_identifiers: true
+        format_sql: true
+    show-sql: true
+  h2:
+    console:
+      enabled: true
 
   # OAuth2 Facebook
   security:

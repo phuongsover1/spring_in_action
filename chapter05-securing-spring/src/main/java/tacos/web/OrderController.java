@@ -13,7 +13,10 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import tacos.data.OrderRepository;
+import tacos.data.UserRepository;
 import tacos.domain.TacoOrder;
+
+import java.security.Principal;
 
 @Slf4j
 @Controller
@@ -23,6 +26,7 @@ import tacos.domain.TacoOrder;
 public class OrderController {
 
     private final OrderRepository orderRepo;
+    private final UserRepository userRepo;
 
     @GetMapping("/current")
     public String orderForm(Model model) {
@@ -31,13 +35,14 @@ public class OrderController {
     }
 
     @PostMapping
-    public String processOrder(@Valid TacoOrder order, Errors errors, SessionStatus sessionStatus) {
+    public String processOrder(@Valid TacoOrder order, Errors errors, SessionStatus sessionStatus, Principal principal) {
         log.info("Order submittted: " + order);
 
         if (errors.hasErrors()) {
             return "orderForm";
         }
 
+        order.setUser(userRepo.findByUsername(principal.getName()));
         orderRepo.save(order);
         sessionStatus.setComplete();
         return "redirect:/";
