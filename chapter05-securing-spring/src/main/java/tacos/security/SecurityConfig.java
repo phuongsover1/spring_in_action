@@ -2,6 +2,7 @@ package tacos.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -36,6 +37,7 @@ public class SecurityConfig {
        return http
                .authorizeRequests()
                .requestMatchers("/design", "/orders").hasRole("USER")
+               .requestMatchers(HttpMethod.POST,"/admin/**").access("hasRole('ADMIN')")
                .anyRequest().permitAll()
                .and()
                .formLogin()
