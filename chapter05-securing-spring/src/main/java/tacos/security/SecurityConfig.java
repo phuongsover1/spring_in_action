@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import tacos.User;
 import tacos.data.UserRepository;
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
 @Configuration
 public class SecurityConfig {
@@ -37,7 +38,8 @@ public class SecurityConfig {
                .requestMatchers("/design", "/orders").hasRole("USER")
                .requestMatchers("/", "/**").permitAll()
                .and()
-               .build();
+               .formLogin().loginPage("/login").defaultSuccessUrl("/design", true)
+               .and().build();
     }
 
 }

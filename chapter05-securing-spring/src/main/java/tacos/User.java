@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @RequiredArgsConstructor
 public class User implements UserDetails {
 
