@@ -36,3 +36,14 @@ server:
     key-store: file:///home/nero/mykeys.jks
     key-store-password: phuongsover1
     key-password: phuongsover1
+
+# Configuring the logging
+logging:
+  level:
+    root: WARN
+    org:
+      springframework:
+        security: DEBUG
+  file:
+    path: /home/nero
+    name: TacoCloud.log
