@@ -7,12 +7,18 @@ spring:
   datasource:
     generate-unique-name: false
     name: tacocloud
+    url: jdbc:mariadb://localhost:3306/taco_cloud
+    username: nero
+    password: Nguyensover1
+    driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     properties:
       hibernate:
         globally_quoted_identifiers: true
         format_sql: true
     show-sql: true
+    hibernate:
+      ddl-auto: update
   h2:
     console:
       enabled: true
