@@ -74,3 +74,384 @@
 2024-01-07T20:26:08.190+07:00 DEBUG 60314 --- [https-jsse-nio-8443-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=User(id=1, username=phuong, password=$2a$10$Fhf47qA1eVeEGCuZT6kl4.k0IzUZniv2cNUDmEfreZZnHGCyoTpBW, fullname=phuong, street=123, state=123, city=SA, zip=123, phoneNumber=123), Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=6B7DBE97FDA9FC0C2855C0E243729AED], Granted Authorities=[ROLE_USER]]]
 2024-01-07T20:26:08.191+07:00 DEBUG 60314 --- [https-jsse-nio-8443-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /styles.css] with attributes [permitAll]
 2024-01-07T20:26:08.191+07:00 DEBUG 60314 --- [https-jsse-nio-8443-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /styles.css
+2024-01-07T20:32:22.344+07:00  WARN 66098 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Unsatisfied dependency expressed through constructor parameter 2: No qualifying bean of type 'int' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2024-01-07T20:32:22.388+07:00 ERROR 66098 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+OrderController is annotated with @ConstructorBinding but it is defined as a regular bean which caused dependency injection to fail.
+
+Action:
+
+Update your configuration so that OrderController is defined via @ConfigurationPropertiesScan or @EnableConfigurationProperties.
+
+2024-01-07T20:33:49.059+07:00  WARN 66662 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Failed to instantiate [tacos.web.OrderController]: No default constructor found
+2024-01-07T20:33:49.100+07:00 ERROR 66662 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Failed to instantiate [tacos.web.OrderController]: No default constructor found
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1314) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1199) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:560) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:941) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.1.jar:3.1.1]
+	at tacos.TacoCloudApplication.main(TacoCloudApplication.java:16) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.1.1.jar:3.1.1]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [tacos.web.OrderController]: No default constructor found
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:83) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1308) ~[spring-beans-6.0.10.jar:6.0.10]
+	... 22 common frames omitted
+Caused by: java.lang.NoSuchMethodException: tacos.web.OrderController.<init>()
+	at java.base/java.lang.Class.getConstructor0(Class.java:3585) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredConstructor(Class.java:2754) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:79) ~[spring-beans-6.0.10.jar:6.0.10]
+	... 23 common frames omitted
+
+2024-01-07T20:34:32.696+07:00  WARN 66961 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Unsatisfied dependency expressed through constructor parameter 2: No qualifying bean of type 'int' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2024-01-07T20:34:32.738+07:00 ERROR 66961 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+OrderController is annotated with @ConstructorBinding but it is defined as a regular bean which caused dependency injection to fail.
+
+Action:
+
+Update your configuration so that OrderController is defined via @ConfigurationPropertiesScan or @EnableConfigurationProperties.
+
+2024-01-07T20:35:19.743+07:00  WARN 67261 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Unsatisfied dependency expressed through constructor parameter 2: No qualifying bean of type 'int' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2024-01-07T20:35:19.785+07:00 ERROR 67261 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+OrderController is annotated with @ConstructorBinding but it is defined as a regular bean which caused dependency injection to fail.
+
+Action:
+
+Update your configuration so that OrderController is defined via @ConfigurationPropertiesScan or @EnableConfigurationProperties.
+
+2024-01-07T20:36:37.042+07:00  WARN 67730 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+2024-01-07T20:36:37.085+07:00 ERROR 67730 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:605) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:941) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.1.jar:3.1.1]
+	at tacos.TacoCloudApplication.main(TacoCloudApplication.java:16) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.1.1.jar:3.1.1]
+Caused by: java.lang.IllegalStateException: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+	at org.springframework.util.Assert.state(Assert.java:76) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.bind(ConfigurationPropertiesBindingPostProcessor.java:92) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.postProcessBeforeInitialization(ConfigurationPropertiesBindingPostProcessor.java:79) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:419) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1762) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.10.jar:6.0.10]
+	... 20 common frames omitted
+
+2024-01-07T20:39:05.923+07:00  WARN 68330 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+2024-01-07T20:39:05.971+07:00 ERROR 68330 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:605) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:941) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.1.jar:3.1.1]
+	at tacos.TacoCloudApplication.main(TacoCloudApplication.java:16) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.1.1.jar:3.1.1]
+Caused by: java.lang.IllegalStateException: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+	at org.springframework.util.Assert.state(Assert.java:76) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.bind(ConfigurationPropertiesBindingPostProcessor.java:92) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.postProcessBeforeInitialization(ConfigurationPropertiesBindingPostProcessor.java:79) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:419) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1762) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.10.jar:6.0.10]
+	... 20 common frames omitted
+
+2024-01-07T20:40:57.718+07:00  WARN 68852 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+2024-01-07T20:40:57.779+07:00 ERROR 68852 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:605) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:941) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.1.jar:3.1.1]
+	at tacos.TacoCloudApplication.main(TacoCloudApplication.java:16) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.1.1.jar:3.1.1]
+Caused by: java.lang.IllegalStateException: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+	at org.springframework.util.Assert.state(Assert.java:76) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.bind(ConfigurationPropertiesBindingPostProcessor.java:92) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.postProcessBeforeInitialization(ConfigurationPropertiesBindingPostProcessor.java:79) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:419) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1762) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.10.jar:6.0.10]
+	... 20 common frames omitted
+
+2024-01-07T20:41:35.741+07:00  WARN 69163 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+2024-01-07T20:41:35.791+07:00 ERROR 69163 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:605) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:941) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.1.jar:3.1.1]
+	at tacos.TacoCloudApplication.main(TacoCloudApplication.java:16) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.1.1.jar:3.1.1]
+Caused by: java.lang.IllegalStateException: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+	at org.springframework.util.Assert.state(Assert.java:76) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.bind(ConfigurationPropertiesBindingPostProcessor.java:92) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.postProcessBeforeInitialization(ConfigurationPropertiesBindingPostProcessor.java:79) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:419) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1762) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.10.jar:6.0.10]
+	... 20 common frames omitted
+
+2024-01-07T20:42:01.852+07:00  WARN 69368 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+2024-01-07T20:42:01.896+07:00 ERROR 69368 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:605) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:941) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.1.jar:3.1.1]
+	at tacos.TacoCloudApplication.main(TacoCloudApplication.java:16) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.1.1.jar:3.1.1]
+Caused by: java.lang.IllegalStateException: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+	at org.springframework.util.Assert.state(Assert.java:76) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.bind(ConfigurationPropertiesBindingPostProcessor.java:92) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.postProcessBeforeInitialization(ConfigurationPropertiesBindingPostProcessor.java:79) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:419) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1762) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.10.jar:6.0.10]
+	... 20 common frames omitted
+
+2024-01-07T20:46:08.147+07:00  WARN 70682 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+2024-01-07T20:46:08.188+07:00 ERROR 70682 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:605) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:941) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.1.jar:3.1.1]
+	at tacos.TacoCloudApplication.main(TacoCloudApplication.java:16) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.1.1.jar:3.1.1]
+Caused by: java.lang.IllegalStateException: Cannot bind @ConfigurationProperties for bean 'orderController'. Ensure that @ConstructorBinding has not been applied to regular bean
+	at org.springframework.util.Assert.state(Assert.java:76) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.bind(ConfigurationPropertiesBindingPostProcessor.java:92) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.postProcessBeforeInitialization(ConfigurationPropertiesBindingPostProcessor.java:79) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:419) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1762) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.10.jar:6.0.10]
+	... 20 common frames omitted
+
+2024-01-07T20:55:28.908+07:00  WARN 73359 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-07T20:55:29.286+07:00 DEBUG 73359 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ROLE_USER')] for Mvc [pattern='/design']
+2024-01-07T20:55:29.304+07:00 DEBUG 73359 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ROLE_USER')] for Mvc [pattern='/orders']
+2024-01-07T20:55:29.305+07:00 DEBUG 73359 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ADMIN')] for Mvc [pattern='/admin/**', POST]
+2024-01-07T20:55:29.305+07:00 DEBUG 73359 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/']
+2024-01-07T20:55:29.305+07:00 DEBUG 73359 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/**']
+2024-01-07T20:55:29.305+07:00 DEBUG 73359 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/h2-console/**']
+2024-01-07T20:55:29.321+07:00  INFO 73359 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@31e36727, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4e30dc11, org.springframework.security.web.context.SecurityContextHolderFilter@57907bbd, org.springframework.security.web.header.HeaderWriterFilter@cf3aa25, org.springframework.security.web.csrf.CsrfFilter@5317bc77, org.springframework.security.web.authentication.logout.LogoutFilter@3381b53e, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@47a305c9, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@7d60499b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@75af7d3a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7d1f2830, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2ad40d0d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6076e582, org.springframework.security.web.access.ExceptionTranslationFilter@4f59385c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@50a5c081]
+2024-01-07T21:02:09.378+07:00  WARN 74618 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-07T21:02:09.738+07:00 DEBUG 74618 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ROLE_USER')] for Mvc [pattern='/design']
+2024-01-07T21:02:09.757+07:00 DEBUG 74618 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ROLE_USER')] for Mvc [pattern='/orders']
+2024-01-07T21:02:09.758+07:00 DEBUG 74618 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ADMIN')] for Mvc [pattern='/admin/**', POST]
+2024-01-07T21:02:09.758+07:00 DEBUG 74618 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/']
+2024-01-07T21:02:09.758+07:00 DEBUG 74618 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/**']
+2024-01-07T21:02:09.758+07:00 DEBUG 74618 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/h2-console/**']
+2024-01-07T21:02:09.778+07:00  INFO 74618 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2688fb8f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7415e3bc, org.springframework.security.web.context.SecurityContextHolderFilter@636cf467, org.springframework.security.web.header.HeaderWriterFilter@70d621a0, org.springframework.security.web.csrf.CsrfFilter@3015b35d, org.springframework.security.web.authentication.logout.LogoutFilter@25426ad8, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@1b688137, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@4492dbb1, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@63158bf9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@216a179, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2c8d2aab, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7f2413e9, org.springframework.security.web.access.ExceptionTranslationFilter@45e3980a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1c28479f]
+2024-01-07T21:02:16.370+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /orders
+2024-01-07T21:02:16.387+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-01-07T21:02:16.397+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Failed to authorize filter invocation [GET /orders] with attributes [hasRole('ROLE_USER')]
+2024-01-07T21:02:16.408+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-5] o.s.s.w.s.HttpSessionRequestCache        : Saved request https://localhost:8443/orders?continue to session
+2024-01-07T21:02:16.412+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-5] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@77d203eb, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]
+2024-01-07T21:02:16.412+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-5] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@6c56503f
+2024-01-07T21:02:16.413+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-5] o.s.s.web.DefaultRedirectStrategy        : Redirecting to https://localhost:8443/login
+2024-01-07T21:02:16.437+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /login
+2024-01-07T21:02:16.440+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-01-07T21:02:16.443+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-6] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /login] with attributes [permitAll]
+2024-01-07T21:02:16.444+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /login
+2024-01-07T21:02:16.854+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /images/TacoCloud.png
+2024-01-07T21:02:16.861+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-01-07T21:02:16.862+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-7] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /images/TacoCloud.png] with attributes [permitAll]
+2024-01-07T21:02:16.862+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /images/TacoCloud.png
+2024-01-07T21:02:16.970+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2024-01-07T21:02:16.973+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-01-07T21:02:16.974+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-8] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /favicon.ico] with attributes [permitAll]
+2024-01-07T21:02:16.975+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
+2024-01-07T21:02:16.982+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-01-07T21:02:16.986+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-01-07T21:02:16.987+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-8] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /error] with attributes [permitAll]
+2024-01-07T21:02:16.987+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-01-07T21:02:25.705+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /login
+2024-01-07T21:02:26.088+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-9] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2024-01-07T21:02:26.089+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-9] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from B308793D605C2D5AE8A2C38516CE3C21
+2024-01-07T21:02:26.090+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-9] o.s.s.w.csrf.CsrfAuthenticationStrategy  : Replaced CSRF Token
+2024-01-07T21:02:26.096+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-9] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=User(id=1, username=phuong, password=$2a$10$Fhf47qA1eVeEGCuZT6kl4.k0IzUZniv2cNUDmEfreZZnHGCyoTpBW, fullname=phuong, street=123, state=123, city=SA, zip=123, phoneNumber=123), Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=B308793D605C2D5AE8A2C38516CE3C21], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@4d88fb23]
+2024-01-07T21:02:26.096+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-9] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=User(id=1, username=phuong, password=$2a$10$Fhf47qA1eVeEGCuZT6kl4.k0IzUZniv2cNUDmEfreZZnHGCyoTpBW, fullname=phuong, street=123, state=123, city=SA, zip=123, phoneNumber=123), Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=B308793D605C2D5AE8A2C38516CE3C21], Granted Authorities=[ROLE_USER]]
+2024-01-07T21:02:26.097+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-9] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /design
+2024-01-07T21:02:26.122+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /design
+2024-01-07T21:02:26.123+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=User(id=1, username=phuong, password=$2a$10$Fhf47qA1eVeEGCuZT6kl4.k0IzUZniv2cNUDmEfreZZnHGCyoTpBW, fullname=phuong, street=123, state=123, city=SA, zip=123, phoneNumber=123), Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=B308793D605C2D5AE8A2C38516CE3C21], Granted Authorities=[ROLE_USER]]]
+2024-01-07T21:02:26.123+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-10] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /design] with attributes [hasRole('ROLE_USER')]
+2024-01-07T21:02:26.124+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /design
+2024-01-07T21:02:26.275+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /styles.css
+2024-01-07T21:02:26.278+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=User(id=1, username=phuong, password=$2a$10$Fhf47qA1eVeEGCuZT6kl4.k0IzUZniv2cNUDmEfreZZnHGCyoTpBW, fullname=phuong, street=123, state=123, city=SA, zip=123, phoneNumber=123), Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=B308793D605C2D5AE8A2C38516CE3C21], Granted Authorities=[ROLE_USER]]]
+2024-01-07T21:02:26.279+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /styles.css] with attributes [permitAll]
+2024-01-07T21:02:26.279+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /styles.css
+2024-01-07T21:02:26.315+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /images/TacoCloud.png
+2024-01-07T21:02:26.317+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=User(id=1, username=phuong, password=$2a$10$Fhf47qA1eVeEGCuZT6kl4.k0IzUZniv2cNUDmEfreZZnHGCyoTpBW, fullname=phuong, street=123, state=123, city=SA, zip=123, phoneNumber=123), Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=B308793D605C2D5AE8A2C38516CE3C21], Granted Authorities=[ROLE_USER]]]
+2024-01-07T21:02:26.318+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /images/TacoCloud.png] with attributes [permitAll]
+2024-01-07T21:02:26.318+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /images/TacoCloud.png
+2024-01-07T21:02:31.565+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /orders
+2024-01-07T21:02:31.566+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=User(id=1, username=phuong, password=$2a$10$Fhf47qA1eVeEGCuZT6kl4.k0IzUZniv2cNUDmEfreZZnHGCyoTpBW, fullname=phuong, street=123, state=123, city=SA, zip=123, phoneNumber=123), Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=B308793D605C2D5AE8A2C38516CE3C21], Granted Authorities=[ROLE_USER]]]
+2024-01-07T21:02:31.566+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-3] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /orders] with attributes [hasRole('ROLE_USER')]
+2024-01-07T21:02:31.567+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /orders
+2024-01-07T21:02:31.680+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /styles.css
+2024-01-07T21:02:31.683+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=User(id=1, username=phuong, password=$2a$10$Fhf47qA1eVeEGCuZT6kl4.k0IzUZniv2cNUDmEfreZZnHGCyoTpBW, fullname=phuong, street=123, state=123, city=SA, zip=123, phoneNumber=123), Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=B308793D605C2D5AE8A2C38516CE3C21], Granted Authorities=[ROLE_USER]]]
+2024-01-07T21:02:31.684+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /styles.css] with attributes [permitAll]
+2024-01-07T21:02:31.684+07:00 DEBUG 74618 --- [https-jsse-nio-8443-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /styles.css
+2024-01-07T21:05:24.255+07:00  WARN 76132 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'orderController' defined in file [/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter06-working-with-configuration-properties/target/classes/tacos/web/OrderController.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'orderProp': Could not bind properties to 'OrderProp' : prefix=tacos.orders, ignoreInvalidFields=false, ignoreUnknownFields=true
+2024-01-07T21:05:24.298+07:00 ERROR 76132 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Binding to target org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'tacos.orders' to tacos.web.OrderProp failed:
+
+    Property: tacos.orders.pageSize
+    Value: "3"
+    Origin: class path resource [application.yml] - 60:16
+    Reason: Must be between 5 and 25
+
+
+Action:
+
+Update your application's configuration
+
+2024-01-07T21:05:42.705+07:00  WARN 76305 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-07T21:05:43.102+07:00 DEBUG 76305 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ROLE_USER')] for Mvc [pattern='/design']
+2024-01-07T21:05:43.126+07:00 DEBUG 76305 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ROLE_USER')] for Mvc [pattern='/orders']
+2024-01-07T21:05:43.127+07:00 DEBUG 76305 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [hasRole('ADMIN')] for Mvc [pattern='/admin/**', POST]
+2024-01-07T21:05:43.128+07:00 DEBUG 76305 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/']
+2024-01-07T21:05:43.128+07:00 DEBUG 76305 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Mvc [pattern='/**']
+2024-01-07T21:05:43.129+07:00 DEBUG 76305 --- [restartedMain] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/h2-console/**']
+2024-01-07T21:05:43.153+07:00  INFO 76305 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5a865f29, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@41090b90, org.springframework.security.web.context.SecurityContextHolderFilter@4219fcaf, org.springframework.security.web.header.HeaderWriterFilter@3951db01, org.springframework.security.web.csrf.CsrfFilter@6a20a60a, org.springframework.security.web.authentication.logout.LogoutFilter@41bddd21, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@28786f9e, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@754ddb22, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1ee10049, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@302e533b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6e64ee1e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@9adb377, org.springframework.security.web.access.ExceptionTranslationFilter@245b6710, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@669732a0]

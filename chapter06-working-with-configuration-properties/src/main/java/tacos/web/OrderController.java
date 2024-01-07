@@ -1,6 +1,10 @@
 package tacos.web;
 
 import com.nimbusds.jose.proc.SecurityContext;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
@@ -27,13 +31,16 @@ import java.security.Principal;
 
 @Slf4j
 @Controller
-@RequiredArgsConstructor
+@Data
 @RequestMapping("/orders")
 @SessionAttributes("tacoOrder")
+@EnableConfigurationProperties
 public class OrderController {
 
     private final OrderRepository orderRepo;
     private final UserRepository userRepo;
+    private final OrderProp orderProp;
+
 
     @GetMapping("/current")
     public String orderForm(Model model) {
@@ -59,7 +66,7 @@ public class OrderController {
 
     @GetMapping
     public String ordersForUser(@AuthenticationPrincipal User user, Model model) {
-        Pageable pageable = PageRequest.of(0,2);
+        Pageable pageable = PageRequest.of(0, orderProp.getPageSize());
         model.addAttribute("orders", orderRepo.findByUserOrderByPlacedAtDesc(user, pageable));
         return "orderList";
     }

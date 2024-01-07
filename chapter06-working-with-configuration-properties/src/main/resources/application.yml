@@ -53,3 +53,8 @@ logging:
   file:
     path: /home/nero
     name: TacoCloud.log
+
+# My Own Configuration properties
+tacos:
+  orders:
+    page-size: 5
