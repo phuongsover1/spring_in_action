@@ -4,6 +4,9 @@ spring:
     cache: false
 
   #H2 Database
+  datasource:
+    generate-unique-name: false
+    name: tacocloud
   jpa:
     properties:
       hibernate:
@@ -11,7 +14,7 @@ spring:
         format_sql: true
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
   h2:
     console:
       enabled: true
@@ -36,7 +39,15 @@ server:
     key-store-password: phuongsover1
     key-password: phuongsover1
 
-# My Own Configuration properties
-tacos:
-  orders:
-    page-size: 5
+# Configuring the logging
+logging:
+  level:
+    root: WARN
+    tacos: DEBUG
+    org:
+      springframework:
+        security: DEBUG
+  file:
+    path: /home/nero
+    name: TacoCloud.log
+

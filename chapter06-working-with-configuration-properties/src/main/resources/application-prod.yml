@@ -4,6 +4,13 @@ spring:
     cache: false
 
   #H2 Database
+  datasource:
+    generate-unique-name: false
+    name: tacocloud
+    url: jdbc:mariadb://localhost:3306/taco_cloud
+    username: nero
+    password: Nguyensover1
+    driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     properties:
       hibernate:
@@ -36,7 +43,14 @@ server:
     key-store-password: phuongsover1
     key-password: phuongsover1
 
-# My Own Configuration properties
-tacos:
-  orders:
-    page-size: 5
+# Configuring the logging
+logging:
+  level:
+    root: WARN
+    tacos: DEBUG
+    org:
+      springframework:
+        security: DEBUG
+  file:
+    path: /home/nero
+    name: TacoCloud.log
