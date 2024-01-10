@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import tacos.User;
 import tacos.domain.TacoOrder;
 
 public interface OrderRepository extends CrudRepository<TacoOrder, Long> {
@@ -19,6 +18,5 @@ public interface OrderRepository extends CrudRepository<TacoOrder, Long> {
     @Query("SELECT o FROM TacoOrder o where o.deliveryCity='Seattle'")
     List<TacoOrder> readOrdersDeliveredInSeattle();
 
-    List<TacoOrder> findByUserOrderByPlacedAtDesc(User user, Pageable pageable);
 
 }

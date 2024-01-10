@@ -13,7 +13,6 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import tacos.User;
 
 @Data
 @Entity
@@ -56,9 +55,6 @@ public class TacoOrder {
 
   @OneToMany(cascade = CascadeType.ALL)
   private List<Taco> tacos = new ArrayList<>();
-
-  @ManyToOne
-  private User user;
 
   public void addTaco(Taco taco) {
     this.tacos.add(taco);

@@ -5,14 +5,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import tacos.data.IngredientRepository;
 import tacos.data.TacoRepository;
-import tacos.data.UserRepository;
 import tacos.domain.Ingredient;
 import tacos.domain.Ingredient.Type;
 import tacos.domain.Taco;
-import tacos.security.RegistrationForm;
 
 import java.util.Arrays;
 
@@ -27,7 +24,7 @@ public class TacoCloudApplication {
   @Profile("test")
 //	@Profile({"prod", "test"})
 //	@Profile("!prod")
-  public CommandLineRunner dataLoader(IngredientRepository repo, UserRepository userRepo, PasswordEncoder encoder, TacoRepository tacoRepo) {
+  public CommandLineRunner dataLoader(IngredientRepository repo, TacoRepository tacoRepo) {
     return args -> {
       Ingredient FLTO = repo.save(new Ingredient("FLTO", "Flour Tortilla", Type.WRAP));
       Ingredient COTO = repo.save(new Ingredient("COTO", "Corn Tortilla", Type.WRAP));
@@ -39,9 +36,6 @@ public class TacoCloudApplication {
       Ingredient JACK = repo.save(new Ingredient("JACK", "Monterrey Jack", Type.CHEESE));
       Ingredient SLSA = repo.save(new Ingredient("SLSA", "Salsa", Type.SAUCE));
       Ingredient SRCR = repo.save(new Ingredient("SRCR", "Sour Cream", Type.SAUCE));
-
-//      RegistrationForm form = new RegistrationForm("phuong", "1234", "Le Nguyen Duy Phuong", "Le Duc Tho", "TP.Ho Chi Minh","VN", "123456", "0903414321");
-//      userRepo.save(form.toUser(encoder));
 
       Taco taco1 = new Taco();
       taco1.setName("Taco1");
