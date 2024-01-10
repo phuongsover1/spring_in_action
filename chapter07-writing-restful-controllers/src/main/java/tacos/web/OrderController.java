@@ -17,7 +17,6 @@ import tacos.domain.TacoOrder;
 @Data
 @RequestMapping("/orders")
 @SessionAttributes("tacoOrder")
-@EnableConfigurationProperties
 public class OrderController {
 
     private final OrderRepository orderRepo;
