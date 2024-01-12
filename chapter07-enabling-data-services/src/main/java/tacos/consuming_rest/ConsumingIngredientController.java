@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 import tacos.domain.Ingredient;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,10 +28,10 @@ public class ConsumingIngredientController {
   public ResponseEntity<Ingredient> getIngredientById(@PathVariable String id) {
     Map<String, String> urlVariables = new HashMap<>();
     urlVariables.put("id", id);
+    URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/data-api/ingredients/{id}")
+            .build(urlVariables);
     try {
-      Ingredient ingredient = restTemplate.getForObject("http://localhost:8080/data-api/ingredients/{id}",
-              Ingredient.class,
-              urlVariables);
+      Ingredient ingredient = restTemplate.getForObject(url, Ingredient.class);
       if (ingredient != null)
         return new ResponseEntity<>(ingredient, HttpStatus.OK);
 
