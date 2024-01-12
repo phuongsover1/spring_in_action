@@ -53,4 +53,9 @@ public class ConsumingIngredientController {
     restTemplate.put("http://localhost:8080/data-api/ingredients/{id}", ingredient, id);
   }
 
+  @DeleteMapping("/{id}")
+  public void deleteIngredient(@PathVariable String id) {
+    restTemplate.delete("http://localhost:8080/data-api/ingredients/{id}", id);
+  }
+
 }
