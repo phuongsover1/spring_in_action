@@ -12,6 +12,9 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import tacos.domain.Ingredient;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Slf4j
 @Data
 @RestController
@@ -21,8 +24,12 @@ public class ConsumingIngredientController {
 
   @GetMapping("/{id}")
   public ResponseEntity<Ingredient> getIngredientById(@PathVariable String id) {
+    Map<String, String> urlVariables = new HashMap<>();
+    urlVariables.put("id", id);
     try {
-      Ingredient ingredient = restTemplate.getForObject("http://localhost:8080/data-api/ingredients/{id}", Ingredient.class, id);
+      Ingredient ingredient = restTemplate.getForObject("http://localhost:8080/data-api/ingredients/{id}",
+              Ingredient.class,
+              urlVariables);
       if (ingredient != null)
         return new ResponseEntity<>(ingredient, HttpStatus.OK);
 
