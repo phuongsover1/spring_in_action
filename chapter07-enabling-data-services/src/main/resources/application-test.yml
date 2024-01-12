@@ -31,11 +31,4 @@ spring:
               - email
               - public_profile
 
-# Configuring the embedded server
-server:
-  port: 8443
-  ssl:
-    key-store: file:///home/nero/mykeys.jks
-    key-store-password: phuongsover1
-    key-password: phuongsover1
 

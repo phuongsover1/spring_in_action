@@ -22,11 +22,7 @@ spring:
       base-path: /data-api
 # Configuring the embedded server
 server:
-  port: 8443
-  ssl:
-    key-store: file:///home/nero/mykeys.jks
-    key-store-password: phuongsover1
-    key-password: phuongsover1
+  port: 8080
 
 # My Own Configuration properties
 tacos:

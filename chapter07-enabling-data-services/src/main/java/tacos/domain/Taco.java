@@ -13,9 +13,11 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 @Data
 @Entity
+@RestResource(rel = "tacos", path = "tacos")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Taco {
