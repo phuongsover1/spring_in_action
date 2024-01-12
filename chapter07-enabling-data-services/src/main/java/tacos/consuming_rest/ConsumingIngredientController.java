@@ -58,4 +58,25 @@ public class ConsumingIngredientController {
     restTemplate.delete("http://localhost:8080/data-api/ingredients/{id}", id);
   }
 
+  @PostMapping(value = "/returnCreatedObj", consumes = "application/json")
+  public Ingredient postAndReturnCreatedIngredient(@RequestBody Ingredient ingredient) {
+   return restTemplate.postForObject("http://localhost:8080/data-api/ingredients", ingredient, Ingredient.class);
+  }
+
+  @PostMapping(value = "/returnCreatedObjUrlLocation", consumes = "application/json")
+  public URI postAndReturnCreatedObjLocation(@RequestBody Ingredient ingredient) {
+    return restTemplate.postForLocation("http://localhost:8080/data-api/ingredients", ingredient);
+  }
+
+  @PostMapping(value = "/returnCreatedObjAndLocation", consumes = "application/json")
+  public Ingredient postAndReturnCreatedObjAndLocation(@RequestBody Ingredient ingredient) {
+    ResponseEntity<Ingredient> response = restTemplate.postForEntity("http://localhost:8080/data-api/ingredients",
+            ingredient,
+            Ingredient.class);
+    log.info("Newly Created Obj Location: " +  response.getHeaders().getLocation());
+
+    return response.getBody();
+
+  }
+
 }
