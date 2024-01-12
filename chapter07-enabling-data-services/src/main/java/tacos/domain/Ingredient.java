@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@NoArgsConstructor
 public class Ingredient {
 
 @jakarta.persistence.Id
-  private final String id;
-  private final String name;
-  private final Type type;
+  private String id;
+  private String name;
+  private Type type;
 
   public static enum Type {
     WRAP,

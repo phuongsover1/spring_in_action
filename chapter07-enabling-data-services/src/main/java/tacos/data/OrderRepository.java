@@ -16,7 +16,7 @@ public interface OrderRepository extends CrudRepository<TacoOrder, Long> {
     
     List<TacoOrder> readOrdersByDeliveryZipAndPlacedAtBetween(String deliveryZip, Date startDate, Date endDate);
 
-    @Query("SELECT o FROM TacoOrder o where o.deliveryCity='Seattle'")
+    @Query("SELECT o FROM orders o where o.deliveryCity='Seattle'")
     List<TacoOrder> readOrdersDeliveredInSeattle();
 
 

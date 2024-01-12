@@ -16,6 +16,10 @@ spring:
     console:
       enabled: true
 
+  # Configuring spring rest data
+  data:
+    rest:
+      base-path: /data-api
 # Configuring the embedded server
 server:
   port: 8443

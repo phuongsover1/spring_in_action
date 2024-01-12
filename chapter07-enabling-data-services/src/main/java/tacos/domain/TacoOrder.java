@@ -15,7 +15,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
+@Entity(name="orders")
 @AllArgsConstructor
 @NoArgsConstructor
 public class TacoOrder {
