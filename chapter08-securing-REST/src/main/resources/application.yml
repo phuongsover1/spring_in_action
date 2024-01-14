@@ -20,6 +20,13 @@ spring:
   data:
     rest:
       base-path: /data-api
+
+  # Configuring resources server
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9000/oauth2/jwks
 # Configuring the embedded server
 server:
   port: 8080
