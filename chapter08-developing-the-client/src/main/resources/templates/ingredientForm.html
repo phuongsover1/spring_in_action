@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+
+    <h1>Add New Ingredient</h1>
+
+<form th:action="@{/ingredients}" th:object="${ingredient}" th:method="POST">
+    <div>
+        <label th:for="name">Name: </label><br/>
+        <input type="text" th:id="name" th:field="*{name}" />
+    </div>
+    <div>
+        <label th:for="type">Type:</label> <br/>
+        <ul>
+           <li th:each="type : ${types}">
+               <input type="radio" th:name="type" th:id="type" th:field="*{type}"/>
+           </li>
+        </ul>
+    </div>
+</form>
+</body>
+</html>

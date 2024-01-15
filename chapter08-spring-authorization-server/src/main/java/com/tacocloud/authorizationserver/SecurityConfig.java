@@ -15,14 +15,14 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
   @Bean
-  SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+  public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
     return http.authorizeRequests(authorizeRequests -> authorizeRequests.anyRequest().authenticated())
             .formLogin()
             .and().build();
   }
 
   @Bean
-  UserDetailsService userDetailsService(UserRepository userRepo) {
+  public UserDetailsService userDetailsService(UserRepository userRepo) {
     return username -> userRepo.findByUsername(username).orElse(null);
   }
   @Bean

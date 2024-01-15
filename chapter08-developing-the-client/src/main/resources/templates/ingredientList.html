@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+    <h1>Ingredients</h1>
+
+<ul>
+    <li th:each="ingredient : ${ingredients}">
+        <span th:text="${ingredient.id}">Ingredient ID</span><br/>
+        <span th:text="${ingredient.name}">Ingredient Name</span><br/>
+        <span th:text="${ingredient.type}">Ingredient Type</span><br/>
+    </li>
+</ul>
+</body>
+</html>
