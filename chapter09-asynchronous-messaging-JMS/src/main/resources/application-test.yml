@@ -32,3 +32,8 @@ spring:
               - public_profile
 
 
+  artemis:
+    host: http://localhost
+    port: 8161
+    user: ${ARTERMIS_USER}
+    password: ${ARTERMIS_PASSWORD}
