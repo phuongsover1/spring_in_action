@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tacos.data.OrderRepository;
+import tacos.domain.Taco;
 import tacos.domain.TacoOrder;
 import tacos.messaging.OrderMessagingService;
 
@@ -57,7 +58,7 @@ public class OrderRestController {
 
   @DeleteMapping("/{orderId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void deleteOrder(@PathVariable("orderId")Long id) {
+  public void deleteOrder(@PathVariable("orderId") Long id) {
     try {
       orderRepo.deleteById(id);
     } catch (EmptyResultDataAccessException e) {
@@ -68,7 +69,7 @@ public class OrderRestController {
 
   @PostMapping(consumes = "application/json")
   @ResponseStatus(HttpStatus.CREATED)
-  public TacoOrder postOrder(@RequestBody TacoOrder order,@RequestParam("useCustomQueue") boolean useCustomQueue) {
+  public TacoOrder postOrder(@RequestBody TacoOrder order, @RequestParam("useCustomQueue") boolean useCustomQueue) {
     if (!useCustomQueue)
       messagingService.sendOrder(order);
     else
@@ -78,8 +79,21 @@ public class OrderRestController {
 
   @PostMapping(value = "/convertAndSend", consumes = "application/json")
   @ResponseStatus(HttpStatus.CREATED)
-  public TacoOrder postOrder1(@RequestBody TacoOrder order) {
-    messagingService.convertAndSend(order);
-    return orderRepo.save(order);
+  public TacoOrder postOrder1(@RequestBody TacoOrder order,
+                              @RequestParam(defaultValue = "false") boolean useCustomQueue,
+                              @RequestParam(name = "orderInWeb", required = true) boolean orderInWeb) {
+    TacoOrder savedOrder =  orderRepo.save(order);
+    if (!useCustomQueue)
+      if (!orderInWeb)
+        messagingService.convertAndSend(savedOrder, "STORE");
+      else
+        messagingService.convertAndSend(savedOrder, "WEB");
+    else {
+      if (!orderInWeb)
+        messagingService.convertAndSend(customDestination, savedOrder, "STORE");
+      else
+        messagingService.convertAndSend(customDestination, savedOrder, "WEB");
+    }
+  return savedOrder;
   }
 }

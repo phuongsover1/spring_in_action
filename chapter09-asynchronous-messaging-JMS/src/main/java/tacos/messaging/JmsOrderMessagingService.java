@@ -7,6 +7,7 @@ import jakarta.jms.Session;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
+import org.springframework.jms.core.MessagePostProcessor;
 import org.springframework.stereotype.Service;
 import tacos.domain.TacoOrder;
 
@@ -29,4 +30,28 @@ public class JmsOrderMessagingService implements OrderMessagingService {
   public void convertAndSend(TacoOrder order) {
     jms.convertAndSend(order);
   }
+
+  @Override
+  public void convertAndSend(TacoOrder order, String place) {
+    jms.convertAndSend(order, new MessagePostProcessor() {
+      @Override
+      public Message postProcessMessage(Message message) throws JMSException {
+        message.setStringProperty("X_ORDER_SOURCE", place);
+        return message;
+      }
+    });
+  }
+
+  @Override
+  public void convertAndSend(Destination destination, TacoOrder order, String place) {
+    jms.convertAndSend(destination, order, new MessagePostProcessor() {
+      @Override
+      public Message postProcessMessage(Message message) throws JMSException {
+        message.setStringProperty("X_ORDER_SOURCE", place);
+        return message;
+      }
+    });
+  }
+
+
 }
