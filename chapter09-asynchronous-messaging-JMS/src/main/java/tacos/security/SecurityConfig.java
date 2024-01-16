@@ -20,6 +20,8 @@ public class SecurityConfig {
         .hasAuthority("SCOPE_writeIngredients")
         .requestMatchers(HttpMethod.DELETE, "/data-api/ingredients")
         .hasAuthority("SCOPE_deleteIngredients")
+        .requestMatchers("/data-api/**")
+        .authenticated()
         .and()
         .oauth2ResourceServer(oauth2 -> oauth2.jwt())
         .build();

@@ -33,7 +33,8 @@ spring:
 
 
   artemis:
-    host: http://localhost
-    port: 8161
     user: ${ARTERMIS_USER}
     password: ${ARTERMIS_PASSWORD}
+  jms:
+    template:
+      default-destination: tacocloud.order.queue

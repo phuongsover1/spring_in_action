@@ -8,16 +8,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tacos.data.OrderRepository;
 import tacos.domain.TacoOrder;
+import tacos.messaging.OrderMessagingService;
 
 import java.util.Optional;
 
 @Slf4j
 @Data
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping(path = "/api/orders", produces = "application/json")
 public class OrderRestController {
   private final OrderRepository orderRepo;
+  private final OrderMessagingService messagingService;
 
   @PutMapping(path = "/{orderId}", consumes = "application/json")
   public TacoOrder putOrder(@PathVariable("orderId") Long orderId, @RequestBody TacoOrder order) {
@@ -60,5 +62,12 @@ public class OrderRestController {
 
     }
 
+  }
+
+  @PostMapping(consumes = "application/json")
+  @ResponseStatus(HttpStatus.CREATED)
+  public TacoOrder postOrder(@RequestBody TacoOrder order) {
+    messagingService.sendOrder(order);
+    return orderRepo.save(order);
   }
 }
