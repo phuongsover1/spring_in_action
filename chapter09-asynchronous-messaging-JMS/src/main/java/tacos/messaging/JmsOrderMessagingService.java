@@ -1,5 +1,6 @@
 package tacos.messaging;
 
+import jakarta.jms.Destination;
 import jakarta.jms.JMSException;
 import jakarta.jms.Message;
 import jakarta.jms.Session;
@@ -17,5 +18,10 @@ public class JmsOrderMessagingService implements OrderMessagingService {
   @Override
   public void sendOrder(TacoOrder order) {
     jms.send(session -> session.createObjectMessage(order));
+  }
+
+  @Override
+  public void sendOrder(Destination destination, TacoOrder order) {
+    jms.send(destination, session -> session.createObjectMessage(order));
   }
 }

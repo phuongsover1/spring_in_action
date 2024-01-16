@@ -1,5 +1,6 @@
 package tacos.web.api;
 
+import jakarta.jms.Destination;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -20,6 +21,7 @@ import java.util.Optional;
 public class OrderRestController {
   private final OrderRepository orderRepo;
   private final OrderMessagingService messagingService;
+  private final Destination customDestination;
 
   @PutMapping(path = "/{orderId}", consumes = "application/json")
   public TacoOrder putOrder(@PathVariable("orderId") Long orderId, @RequestBody TacoOrder order) {
@@ -66,8 +68,11 @@ public class OrderRestController {
 
   @PostMapping(consumes = "application/json")
   @ResponseStatus(HttpStatus.CREATED)
-  public TacoOrder postOrder(@RequestBody TacoOrder order) {
-    messagingService.sendOrder(order);
+  public TacoOrder postOrder(@RequestBody TacoOrder order,@RequestParam("useCustomQueue") boolean useCustomQueue) {
+    if (!useCustomQueue)
+      messagingService.sendOrder(order);
+    else
+      messagingService.sendOrder(customDestination, order);
     return orderRepo.save(order);
   }
 }
