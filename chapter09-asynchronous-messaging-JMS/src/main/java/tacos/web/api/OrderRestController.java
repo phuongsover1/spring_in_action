@@ -75,4 +75,11 @@ public class OrderRestController {
       messagingService.sendOrder(customDestination, order);
     return orderRepo.save(order);
   }
+
+  @PostMapping(value = "/convertAndSend", consumes = "application/json")
+  @ResponseStatus(HttpStatus.CREATED)
+  public TacoOrder postOrder1(@RequestBody TacoOrder order) {
+    messagingService.convertAndSend(order);
+    return orderRepo.save(order);
+  }
 }
