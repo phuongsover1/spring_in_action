@@ -1,0 +1,78 @@
+2024-01-11T00:06:37.332+07:00  WARN 64547 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2024-01-11T00:29:03.977+07:00  INFO 73872 --- [restartedMain] tacos.TacoCloudApplication               : Starting TacoCloudApplication using Java 17.0.9 with PID 73872 (/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter07-writing-restful-controllers/target/classes started by nero in /run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter07-writing-restful-controllers)
+2024-01-11T00:29:03.979+07:00 DEBUG 73872 --- [restartedMain] tacos.TacoCloudApplication               : Running with Spring Boot v3.1.1, Spring v6.0.10
+2024-01-11T00:29:03.979+07:00  INFO 73872 --- [restartedMain] tacos.TacoCloudApplication               : The following 1 profile is active: "test"
+2024-01-11T00:29:08.207+07:00  WARN 73872 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-11T00:29:08.780+07:00  INFO 73872 --- [restartedMain] tacos.TacoCloudApplication               : Started TacoCloudApplication in 5.421 seconds (process running for 6.432)
+2024-01-11T00:37:22.121+07:00  WARN 73872 --- [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2024-01-11T00:51:12.155+07:00  INFO 82339 --- [restartedMain] tacos.TacoCloudApplication               : Starting TacoCloudApplication using Java 17.0.9 with PID 82339 (/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter07-enabling-data-services/target/classes started by nero in /run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter07-enabling-data-services)
+2024-01-11T00:51:12.157+07:00 DEBUG 82339 --- [restartedMain] tacos.TacoCloudApplication               : Running with Spring Boot v3.1.1, Spring v6.0.10
+2024-01-11T00:51:12.158+07:00  INFO 82339 --- [restartedMain] tacos.TacoCloudApplication               : The following 1 profile is active: "test"
+2024-01-11T00:51:16.531+07:00  WARN 82339 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-11T00:51:17.387+07:00  INFO 82339 --- [restartedMain] tacos.TacoCloudApplication               : Started TacoCloudApplication in 5.8 seconds (process running for 6.757)
+2024-01-11T00:53:12.071+07:00  WARN 82339 --- [Thread-5] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2024-01-11T00:53:12.195+07:00  INFO 82339 --- [restartedMain] tacos.TacoCloudApplication               : Starting TacoCloudApplication using Java 17.0.9 with PID 82339 (/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter07-enabling-data-services/target/classes started by nero in /run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter07-enabling-data-services)
+2024-01-11T00:53:12.196+07:00 DEBUG 82339 --- [restartedMain] tacos.TacoCloudApplication               : Running with Spring Boot v3.1.1, Spring v6.0.10
+2024-01-11T00:53:12.196+07:00  INFO 82339 --- [restartedMain] tacos.TacoCloudApplication               : The following 1 profile is active: "test"
+2024-01-11T00:53:12.984+07:00  WARN 82339 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataLoader' defined in tacos.TacoCloudApplication: Unsatisfied dependency expressed through method 'dataLoader' parameter 0: No qualifying bean of type 'tacos.data.IngredientRepository' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2024-01-11T00:53:13.186+07:00  WARN 82339 --- [restartedMain] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2024-01-11T00:53:13.251+07:00 ERROR 82339 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of method dataLoader in tacos.TacoCloudApplication required a bean of type 'tacos.data.IngredientRepository' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'tacos.data.IngredientRepository' in your configuration.
+
+2024-01-11T00:53:14.694+07:00  INFO 82339 --- [restartedMain] tacos.TacoCloudApplication               : Starting TacoCloudApplication using Java 17.0.9 with PID 82339 (/run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter07-enabling-data-services/target/classes started by nero in /run/media/nero/DATA/Backend_Development/spring/spring-in-action/chapter07-enabling-data-services)
+2024-01-11T00:53:14.695+07:00 DEBUG 82339 --- [restartedMain] tacos.TacoCloudApplication               : Running with Spring Boot v3.1.1, Spring v6.0.10
+2024-01-11T00:53:14.695+07:00  INFO 82339 --- [restartedMain] tacos.TacoCloudApplication               : The following 1 profile is active: "test"
+2024-01-11T00:53:15.514+07:00  WARN 82339 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataLoader' defined in tacos.TacoCloudApplication: Failed to instantiate [org.springframework.boot.CommandLineRunner]: Illegal arguments to factory method 'dataLoader'; args: org.springframework.data.jpa.repository.support.SimpleJpaRepository@46f2c0c2,org.springframework.data.jpa.repository.support.SimpleJpaRepository@6dd4bb34,org.springframework.data.jpa.repository.support.SimpleJpaRepository@202dfa1a
+2024-01-11T00:53:15.720+07:00  WARN 82339 --- [restartedMain] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2024-01-11T00:53:15.736+07:00 ERROR 82339 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataLoader' defined in tacos.TacoCloudApplication: Failed to instantiate [org.springframework.boot.CommandLineRunner]: Illegal arguments to factory method 'dataLoader'; args: org.springframework.data.jpa.repository.support.SimpleJpaRepository@46f2c0c2,org.springframework.data.jpa.repository.support.SimpleJpaRepository@6dd4bb34,org.springframework.data.jpa.repository.support.SimpleJpaRepository@202dfa1a
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:659) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:647) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1332) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1162) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:560) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:941) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.1.jar:3.1.1]
+	at tacos.TacoCloudApplication.main(TacoCloudApplication.java:25) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.1.1.jar:3.1.1]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.boot.CommandLineRunner]: Illegal arguments to factory method 'dataLoader'; args: org.springframework.data.jpa.repository.support.SimpleJpaRepository@46f2c0c2,org.springframework.data.jpa.repository.support.SimpleJpaRepository@6dd4bb34,org.springframework.data.jpa.repository.support.SimpleJpaRepository@202dfa1a
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:157) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:655) ~[spring-beans-6.0.10.jar:6.0.10]
+	... 24 common frames omitted
+Caused by: java.lang.IllegalArgumentException: object is not an instance of declaring class
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:139) ~[spring-beans-6.0.10.jar:6.0.10]
+	... 25 common frames omitted
+
