@@ -1,4 +1,4 @@
-package tacos.messaging;
+package tacos.messaging.jms.sender;
 
 import jakarta.jms.Destination;
 import tacos.domain.TacoOrder;

@@ -1,12 +1,10 @@
-package tacos.messaging;
+package tacos.messaging.jms.sender;
 
 import jakarta.jms.Destination;
 import jakarta.jms.JMSException;
 import jakarta.jms.Message;
-import jakarta.jms.Session;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.core.MessageCreator;
 import org.springframework.jms.core.MessagePostProcessor;
 import org.springframework.stereotype.Service;
 import tacos.domain.TacoOrder;

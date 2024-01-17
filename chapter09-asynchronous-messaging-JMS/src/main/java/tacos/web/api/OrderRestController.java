@@ -1,6 +1,7 @@
 package tacos.web.api;
 
 import jakarta.jms.Destination;
+import jakarta.jms.JMSException;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -8,9 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tacos.data.OrderRepository;
-import tacos.domain.Taco;
 import tacos.domain.TacoOrder;
-import tacos.messaging.OrderMessagingService;
+import tacos.messaging.jms.sender.OrderMessagingService;
+import tacos.messaging.jms.sender.OrderReceive;
 
 import java.util.Optional;
 
@@ -23,6 +24,7 @@ public class OrderRestController {
   private final OrderRepository orderRepo;
   private final OrderMessagingService messagingService;
   private final Destination customDestination;
+  private final OrderReceive jmsOrderReceiver;
 
   @PutMapping(path = "/{orderId}", consumes = "application/json")
   public TacoOrder putOrder(@PathVariable("orderId") Long orderId, @RequestBody TacoOrder order) {
@@ -95,5 +97,15 @@ public class OrderRestController {
         messagingService.convertAndSend(customDestination, savedOrder, "WEB");
     }
   return savedOrder;
+  }
+
+  @GetMapping("/messages")
+  public TacoOrder receiveMessageFromBroker() throws JMSException {
+     return jmsOrderReceiver.receiveOrder();
+  }
+
+  @GetMapping("/messages/receiveAndConvert")
+  public TacoOrder receiveAndConvertTacoOrderFromMessage() throws  JMSException {
+    return jmsOrderReceiver.receiveAndConvertOrder();
   }
 }

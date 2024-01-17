@@ -1,4 +1,4 @@
-package tacos.messaging;
+package tacos.messaging.jms;
 
 import jakarta.jms.Destination;
 import org.apache.activemq.artemis.jms.client.ActiveMQQueue;
