@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: test,jms-listener
   # Thymeleaf
   thymeleaf:
     cache: false
