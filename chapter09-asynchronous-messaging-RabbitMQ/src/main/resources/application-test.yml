@@ -25,16 +25,12 @@ spring:
       client:
         registration:
           facebook:
-            client-id: 690105756577119
-            client-secret: e87cf6db27c24558b094ea8bab0e7336
+            client-id: ${FACEBOOK_CLIENT_ID}
+            client-secret: ${FACEBOOK_CLIENT_SECRET}
             scope:
               - email
               - public_profile
-
-
-  artemis:
-    user: ${ARTERMIS_USER}
-    password: ${ARTERMIS_PASSWORD}
-  jms:
+  rabbitmq:
     template:
-      default-destination: tacocloud.order.queue
+      # Define default exchange
+      exchange: tacocloud
