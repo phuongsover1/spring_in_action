@@ -30,7 +30,6 @@ spring:
             scope:
               - email
               - public_profile
-  rabbitmq:
-    template:
-      # Define default exchange
-      exchange: tacocloud
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
