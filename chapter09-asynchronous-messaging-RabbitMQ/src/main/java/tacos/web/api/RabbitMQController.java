@@ -30,7 +30,11 @@ public class RabbitMQController {
 
   @GetMapping
   public ResponseEntity<TacoOrder> receiveNewestOrder(@RequestParam(name = "timeout", defaultValue = "0") long timeout) {
-    Optional<TacoOrder> optOrder = Optional.ofNullable(orderReceiver.receiveOrder(timeout));
+//     Receive() method
+//    Optional<TacoOrder> optOrder = Optional.ofNullable(orderReceiver.receiveOrder(timeout));
+
+//    ReceiveAndConvertMethod()
+   Optional<TacoOrder>  optOrder = Optional.ofNullable(orderReceiver.receiveOrder(timeout));
     return optOrder.map(order -> new ResponseEntity<>(order, HttpStatus.OK)).
         orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
 
