@@ -1,0 +1,36 @@
+spring:
+  # Thymeleaf
+  thymeleaf:
+    cache: false
+
+  #H2 Database
+  datasource:
+    generate-unique-name: false
+    name: tacocloud
+  jpa:
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        format_sql: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
+
+  # OAuth2 Facebook
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: ${FACEBOOK_CLIENT_ID}
+            client-secret: ${FACEBOOK_CLIENT_SECRET}
+            scope:
+              - email
+              - public_profile
+  rabbitmq:
+    template:
+      # Define default exchange
+      exchange: tacocloud
