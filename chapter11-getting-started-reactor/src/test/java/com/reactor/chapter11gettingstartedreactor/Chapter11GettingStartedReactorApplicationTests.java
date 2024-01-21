@@ -1,5 +1,6 @@
 package com.reactor.chapter11gettingstartedreactor;
 
+import lombok.Data;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.core.publisher.Flux;
@@ -254,6 +255,29 @@ class Chapter11GettingStartedReactorApplicationTests {
 		StepVerifier.create(animalFlux)
 				.expectNext("dog", "cat","bird", "anteater")
 				.verifyComplete();
+	}
+
+	@Test
+	public void map() {
+		Flux<Player> playerFlux = Flux.just(
+				"Michael Jordan", "Scottie Fippen", "Steve Kerr"
+		)
+				.map(name -> {
+					String[] split = name.split("\\s");
+					return new Player(split[0], split[1]);
+				});
+
+		StepVerifier.create(playerFlux)
+				.expectNext(new Player("Michael", "Jordan"))
+				.expectNext(new Player("Scottie", "Fippen"))
+				.expectNext(new Player("Steve", "Kerr"))
+				.verifyComplete();
+	}
+
+	@Data
+	private static class Player {
+		private final String firstName;
+		private final String lastName;
 	}
 
 }
