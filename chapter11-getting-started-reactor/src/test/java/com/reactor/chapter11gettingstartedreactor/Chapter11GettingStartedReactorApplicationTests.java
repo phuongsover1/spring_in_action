@@ -181,4 +181,79 @@ class Chapter11GettingStartedReactorApplicationTests {
 		firstFastestFlux.subscribe(System.out::println);
 	}
 
+	@Test
+	public void skipAFew() {
+		Flux<String> countFlux = Flux.just(
+				"one", "two", "skip a few", "ninety nine", "one hundred"
+		)
+				.skip(3);
+
+		StepVerifier.create(countFlux)
+				.expectNext("ninety nine", "one hundred")
+				.verifyComplete();
+
+	}
+
+	@Test
+	public void skipAFewSeconds() {
+		Flux<String> countFlux = Flux.just(
+				"one", "two", "skip a few", "ninety nine", "one hundred"
+		)
+				.delayElements(Duration.ofSeconds(1))
+				.skip(Duration.ofSeconds(4));
+
+		StepVerifier.create(countFlux)
+				.expectNext("ninety nine", "one hundred")
+				.verifyComplete();
+	}
+
+	@Test
+	public void take() {
+		Flux<String> countFlux = Flux.just(
+				"one", "two", "skip a few", "ninety nine", "one hundred"
+		).take(3);
+
+		StepVerifier.create(countFlux)
+				.expectNext("one", "two", "skip a few")
+				.verifyComplete();
+
+	}
+
+	@Test
+	public void takeForAWhile() {
+
+		Flux<String> countFlux = Flux.just(
+				"one", "two", "skip a few", "ninety nine", "one hundred"
+		)
+				.delayElements(Duration.ofSeconds(1))
+				.take(Duration.ofSeconds(3));
+
+		StepVerifier.create(countFlux)
+				.expectNext("one", "two")
+				.verifyComplete();
+	}
+
+	@Test
+	public void filter() {
+		Flux<String> nationalParkFlux = Flux.just(
+				"Yellowstone", "Yosemite", "Grand Canyon", "Zion", "Grand Teton"
+		)
+				.filter(s -> !s.contains(" "));
+
+		StepVerifier.create(nationalParkFlux)
+				.expectNext("Yellowstone", "Yosemite", "Zion")
+				.verifyComplete();
+	}
+
+	@Test
+	public void distinct() {
+		Flux<String> animalFlux = Flux.just(
+				"dog", "cat", "bird", "dog", "bird", "anteater"
+		).distinct();
+
+		StepVerifier.create(animalFlux)
+				.expectNext("dog", "cat","bird", "anteater")
+				.verifyComplete();
+	}
+
 }
