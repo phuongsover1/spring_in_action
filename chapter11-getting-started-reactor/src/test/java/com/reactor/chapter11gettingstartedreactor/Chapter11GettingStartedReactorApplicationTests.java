@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
+import reactor.util.function.Tuple2;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -130,6 +131,28 @@ class Chapter11GettingStartedReactorApplicationTests {
 				.expectNext("Apples")
 				.verifyComplete();
 
+	}
+
+	@Test
+	void zipFluxes() {
+		Flux<String> characterFlux = Flux.just("Garfield", "Kojak", "Barbossa", "Phuong");
+
+		Flux<String> foodFlux = Flux.just("Lasagna", "Lollipops", "Apples", "PineApple");
+
+		Flux<Tuple2<String, String>> zippedFlux = Flux.zip(characterFlux, foodFlux);
+
+    StepVerifier.create(zippedFlux)
+        .expectNextMatches(p ->
+            p.getT1().equals("Garfield") && p.getT2().equals("Lasagna"))
+        .expectNextMatches(p ->
+            p.getT1().equals("Kojak") && p.getT2().equals("Lollipops"))
+        .expectNextMatches(p ->
+            p.getT1().equals("Barbossa") && p.getT2().equals("Apples"))
+        .expectNextMatches(p ->
+            p.getT1().equals("Phuong") && p.getT2().equals("PineApple"))
+        .verifyComplete();
+
+    zippedFlux.subscribe(System.out::println);
 	}
 
 
