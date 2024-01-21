@@ -361,6 +361,26 @@ class Chapter11GettingStartedReactorApplicationTests {
 				.verifyComplete();
 	}
 
+	@Test
+	public void any() {
+		Flux<String> animalFlux = Flux.just(
+				"aardvark", "elephant", "koala", "eagle", "kangaroo"
+		);
+
+		Mono<Boolean> hasGMono = animalFlux.any(animal -> animal.contains("g"));
+
+		StepVerifier.create(hasGMono)
+				.expectNext(true)
+				.verifyComplete();
+
+
+		Mono<Boolean> hasZMono = animalFlux.any(animal -> animal.contains("z"));
+
+		StepVerifier.create(hasZMono)
+				.expectNext(false)
+				.verifyComplete();
+	}
+
 	@Data
 	private static class Player {
 		private final String firstName;
