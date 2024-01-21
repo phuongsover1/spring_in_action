@@ -303,6 +303,19 @@ class Chapter11GettingStartedReactorApplicationTests {
 				.verifyComplete();
 	}
 
+	@Test
+	public void bufferAndPlatMap() {
+		Flux.just(
+				"apple", "orange", "kiwi", "strawberry"
+		)
+				.buffer(3)
+				.flatMap(x -> Flux.fromIterable(x)
+						.map(String::toUpperCase)
+						.log()
+						.subscribeOn(Schedulers.parallel()))
+				.subscribe();
+	}
+
 	@Data
 	private static class Player {
 		private final String firstName;
