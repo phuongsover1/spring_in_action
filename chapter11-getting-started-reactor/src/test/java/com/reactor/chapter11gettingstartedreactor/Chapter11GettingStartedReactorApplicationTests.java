@@ -11,10 +11,7 @@ import reactor.test.StepVerifier;
 import reactor.util.function.Tuple2;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
@@ -326,6 +323,22 @@ class Chapter11GettingStartedReactorApplicationTests {
 
 		StepVerifier.create(fruitListMono)
 				.expectNext(Arrays.asList("apple", "orange", "banana", "kiwi", "strawberry"))
+				.verifyComplete();
+	}
+
+	@Test
+	public void collectMap() {
+		Flux<String> animalFlux = Flux.just(
+				"aardvark", "elephant", "koala", "eagle", "kangaroo"
+		);
+
+		Mono<Map<Character, String>> animapMapMono = animalFlux.collectMap(a -> a.charAt(0));
+
+		StepVerifier.create(animapMapMono)
+				.expectNextMatches(map ->
+						map.get('a').equals("aardvark") &&
+						map.get('e').equals("eagle") &&
+						map.get('k').equals("kangaroo"))
 				.verifyComplete();
 	}
 
