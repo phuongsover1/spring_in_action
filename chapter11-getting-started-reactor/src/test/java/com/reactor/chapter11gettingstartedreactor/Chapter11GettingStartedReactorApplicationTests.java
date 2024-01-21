@@ -169,4 +169,16 @@ class Chapter11GettingStartedReactorApplicationTests {
 				.verifyComplete();
 	}
 
+	@Test
+	public void firstWithSignalFlux() {
+		Flux<String> fastFlux = Flux.just("hare", "cheetah", "squirrel");
+		Flux<String> slowFlux = Flux.just("tortoise", "snail", "sloth")
+						.delaySubscription(Duration.ofMillis(100));
+
+
+		Flux<String> firstFastestFlux = Flux.firstWithSignal(fastFlux, slowFlux);
+
+		firstFastestFlux.subscribe(System.out::println);
+	}
+
 }
