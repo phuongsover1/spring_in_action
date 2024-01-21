@@ -316,6 +316,19 @@ class Chapter11GettingStartedReactorApplicationTests {
 				.subscribe();
 	}
 
+	@Test
+	public void collectList() {
+		Flux<String> fruitFlux = Flux.just(
+				"apple", "orange", "banana", "kiwi", "strawberry"
+		);
+
+		Mono<List<String>> fruitListMono = fruitFlux.collectList();
+
+		StepVerifier.create(fruitListMono)
+				.expectNext(Arrays.asList("apple", "orange", "banana", "kiwi", "strawberry"))
+				.verifyComplete();
+	}
+
 	@Data
 	private static class Player {
 		private final String firstName;
