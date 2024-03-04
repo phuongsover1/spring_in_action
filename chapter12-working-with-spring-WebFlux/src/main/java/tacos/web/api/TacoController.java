@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import tacos.data.TacoRepository;
 import tacos.domain.Taco;
 import tacos.web.TacoProp;
@@ -28,18 +29,18 @@ public class TacoController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Taco> tacoById(@PathVariable("id") Long id) {
+  public Mono<ResponseEntity<Taco>> tacoById(@PathVariable("id") Long id) {
     Optional<Taco> optTaco = tacoRepo.findById(id);
 
     if (optTaco.isPresent())
-      return new ResponseEntity<>(optTaco.get(), HttpStatus.OK);
-    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+      return Mono.just(new ResponseEntity<>(optTaco.get(), HttpStatus.OK));
+    return Mono.just(new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
   }
 
   @PostMapping(consumes = "application/json")
   @ResponseStatus(HttpStatus.CREATED)
-  public Taco postTaco(@RequestBody Taco taco) {
-    return tacoRepo.save(taco);
+  public Mono<Taco> postTaco(@RequestBody Mono<Taco> tacoMono) {
+    return tacoMono.map(tacoRepo::save);
   }
 
 }
