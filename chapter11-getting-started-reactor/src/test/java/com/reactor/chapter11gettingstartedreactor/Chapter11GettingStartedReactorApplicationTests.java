@@ -304,7 +304,7 @@ class Chapter11GettingStartedReactorApplicationTests {
 
 	@Test
 	public void bufferAndPlatMap() {
-		Flux.just(
+		Flux<List<String>> bufferedFlux =  Flux.just(
 				"apple", "orange", "kiwi", "strawberry"
 		)
 				.buffer(3)
@@ -312,7 +312,11 @@ class Chapter11GettingStartedReactorApplicationTests {
 						.map(String::toUpperCase)
 						.log()
 						.subscribeOn(Schedulers.parallel()))
-				.subscribe();
+				.buffer();
+
+		StepVerifier.create(bufferedFlux)
+				.expectNextMatches(list -> list.contains("APPLE") && list.contains("STRAWBERRY") && list.contains("ORANGE") && list.contains("KIWI"))
+				.verifyComplete();
 	}
 
 	@Test
