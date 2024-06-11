@@ -40,7 +40,7 @@ public class TacoController {
   @PostMapping(consumes = "application/json")
   @ResponseStatus(HttpStatus.CREATED)
   public Mono<Taco> postTaco(@RequestBody Mono<Taco> tacoMono) {
-    return tacoMono.map(tacoRepo::save);
+    return tacoMono.flatMap(taco -> Mono.just(taco).map(tacoRepo::save));
   }
 
 }

@@ -12,9 +12,12 @@ import reactor.core.publisher.Mono;
 // Define functional request handlers
 @Configuration
 public class RouterFunctionConfig {
-  @Bean
-  public RouterFunction<?> helloRouterFunction() {
-    return RouterFunctions.route(RequestPredicates.GET("/hello"),
-        request -> ServerResponse.ok().body(Mono.just("Hello World!"), String.class));
-  }
+    @Bean
+    public RouterFunction<?> helloRouterFunction() {
+        return RouterFunctions
+                .route(RequestPredicates.GET("/hello"),
+                        request -> ServerResponse.ok().body(Mono.just("Hello World!"), String.class))
+                .andRoute(RequestPredicates.GET("/bye"),
+                        request -> ServerResponse.ok().body(Mono.just("Bye World!"), String.class));
+    }
 }
