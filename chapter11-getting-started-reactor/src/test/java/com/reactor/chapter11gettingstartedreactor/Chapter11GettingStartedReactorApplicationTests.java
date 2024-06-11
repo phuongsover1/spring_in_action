@@ -122,7 +122,7 @@ class Chapter11GettingStartedReactorApplicationTests {
 				.delaySubscription(Duration.ofMillis(250))
 				.delayElements(Duration.ofMillis(500));
 
-		Flux<String> mergedFlux = characterFlux.mergeWith(foodFlux);
+		Flux<String> mergedFlux = characterFlux.mergeWith(foodFlux).log();
 
 		StepVerifier.create(mergedFlux)
 				.expectNext("Garfield")
@@ -281,11 +281,13 @@ class Chapter11GettingStartedReactorApplicationTests {
 				"Michael Jordan", "Scottie Pippen", "Steve Kerr"
 		)
 				.flatMap(n -> Mono.just(n)
+						.log()
 						.map(p -> {
 							String[] split = p.split("\\s");
 							return new Player(split[0], split[1]);
-						}))
-				.subscribeOn(Schedulers.parallel());
+						}).subscribeOn(Schedulers.parallel())
+				)
+				.log();
 
 		List<Player> playerList = Arrays.asList(
 				new Player("Michael", "Jordan"),
