@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
+import org.springframework.web.reactive.function.client.WebClient;
 import reactor.blockhound.BlockHound;
 import tacos.data.IngredientRepository;
 import tacos.data.OrderRepository;
@@ -78,6 +79,13 @@ public class TacoCloudApplication {
       orderRepo.save(order1);
 
     };
+
   }
+
+  @Bean
+  public WebClient webClient() {
+    return WebClient.create("http://localhost:8080");
+  }
+
 
 }
