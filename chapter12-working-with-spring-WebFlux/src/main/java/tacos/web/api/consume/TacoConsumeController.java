@@ -2,6 +2,7 @@ package tacos.web.api.consume;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -21,8 +22,10 @@ public class TacoConsumeController {
     public Mono<Taco> consumeTaco(@PathVariable Long id) {
         Mono<Taco> foundTaco = webClient.get().uri("/api/tacos/{id}", id)
                 .retrieve()
+//                .onStatus(HttpStatusCode::is4xxClientError, clientResponse -> Mono.just(new Exception("Taco is not found")))
                 .bodyToMono(Taco.class);
-        return foundTaco.timeout(Duration.ofSeconds(1))
+        return foundTaco
+                .timeout(Duration.ofSeconds(1))
                 .onErrorReturn(Taco.builder().id(-1L).name("DEFAULT TACO").build());
 
     }
@@ -50,5 +53,14 @@ public class TacoConsumeController {
                .retrieve()
                .bodyToMono(Void.class);
 
+    }
+
+    @DeleteMapping(path = "/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<Void> deleteTacoOnExternalAPI(@PathVariable Long id) {
+        return webClient
+                .delete().uri("/api/tacos/{id}", id)
+                .retrieve()
+                .bodyToMono(Void.class);
     }
 }
