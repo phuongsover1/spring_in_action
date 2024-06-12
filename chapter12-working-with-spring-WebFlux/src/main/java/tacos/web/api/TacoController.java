@@ -63,4 +63,12 @@ public class TacoController {
       });
   }
 
+  @DeleteMapping("/{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public Mono<Void> deleteTaco(@PathVariable Long id) {
+     tacoRepo.deleteById(id);
+     return Mono.empty();
+
+  }
+
 }
