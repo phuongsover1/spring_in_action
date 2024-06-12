@@ -1,5 +1,6 @@
 package tacos.web.api;
 
+import io.netty.util.internal.StringUtil;
 import lombok.Data;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -41,6 +42,25 @@ public class TacoController {
   @ResponseStatus(HttpStatus.CREATED)
   public Mono<Taco> postTaco(@RequestBody Mono<Taco> tacoMono) {
     return tacoMono.flatMap(taco -> Mono.just(taco).map(tacoRepo::save));
+  }
+
+  @PutMapping(path = "/{id}", consumes = "application/json")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public Mono<Void> updateTaco(@PathVariable Long id, @RequestBody Mono<Taco> tacoMono) {
+    return tacoMono.flatMap(t -> {
+        Optional<Taco> tacoInDBOpt =  tacoRepo.findById(id);
+        if (tacoInDBOpt.isPresent()){
+          Taco taco = tacoInDBOpt.get();
+          if (!StringUtil.isNullOrEmpty(t.getName()))
+            taco.setName(t.getName());
+          if(t.getCreatedAt() != null)
+            taco.setCreatedAt(t.getCreatedAt());
+          if (t.getIngredients() != null && !t.getIngredients().isEmpty())
+            taco.setIngredients(t.getIngredients());
+           tacoRepo.save(taco);
+        }
+        return Mono.empty();
+      });
   }
 
 }

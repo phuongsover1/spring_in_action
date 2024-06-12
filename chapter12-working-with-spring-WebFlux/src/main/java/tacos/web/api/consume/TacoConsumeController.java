@@ -22,7 +22,7 @@ public class TacoConsumeController {
         Mono<Taco> foundTaco = webClient.get().uri("/api/tacos/{id}", id)
                 .retrieve()
                 .bodyToMono(Taco.class);
-        return foundTaco.timeout(Duration.ofMillis(1))
+        return foundTaco.timeout(Duration.ofSeconds(1))
                 .onErrorReturn(Taco.builder().id(-1L).name("DEFAULT TACO").build());
 
     }
@@ -38,5 +38,17 @@ public class TacoConsumeController {
                 .bodyToMono(Taco.class)
                 .timeout(Duration.ofSeconds(1))
                 .onErrorReturn(Taco.builder().id(-1L).name("DEFAULT TACO").build());
+    }
+
+
+    @PutMapping(path = "/{id}",consumes = "application/json")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<Void> updateTacoOnExternalAPI(@PathVariable Long id,  @RequestBody Mono<Taco> updateTaco) {
+       return webClient
+               .put().uri("/api/tacos/{id}", id)
+               .body(updateTaco, Taco.class)
+               .retrieve()
+               .bodyToMono(Void.class);
+
     }
 }
