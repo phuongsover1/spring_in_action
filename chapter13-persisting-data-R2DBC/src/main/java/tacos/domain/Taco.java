@@ -1,7 +1,9 @@
 package tacos.domain;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
@@ -11,36 +13,27 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.data.annotation.Id;
 
 @Data
-@Entity
-@Builder
-@AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties("ingredients")
 public class Taco {
 
-@Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Id
   private Long id;
   
   private Date createdAt = new Date();
 
   @NotNull
   @Size(min = 5, message = "Name must be at least 5 characters long!!!")
-  private String name;
+  private @NonNull String name;
 
-//  @NotNull(message = "You must choose at least 1 ingredient")
-//  @Size(min = 1, message = "You must choose at least 1 ingredient")
-  @ManyToMany()
-  private List<Ingredient> ingredients;
+  private Set<Long> ingredientIds = new HashSet<>();
 
-  public void addIngredient(Ingredient taco) {
-    this.ingredients.add(taco);
+  public void addIngredient(Ingredient ingredient) {
+    ingredientIds.add(ingredient.getId());
   }
 
 }

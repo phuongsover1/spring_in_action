@@ -2,23 +2,22 @@ package tacos.domain;
 
 
 import jakarta.persistence.Entity;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.data.annotation.Id;
 
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@EqualsAndHashCode(exclude = "id")
 public class Ingredient {
+  @Id
+  private Long id;
+  private @NonNull String slug;
 
-@jakarta.persistence.Id
-  private final String id;
-  private final String name;
-  private final Type type;
+  private @NonNull String name;
+  private @NonNull Type type;
 
-  public static enum Type {
+  public enum Type {
     WRAP,
     PROTEIN,
     VEGGIES,
