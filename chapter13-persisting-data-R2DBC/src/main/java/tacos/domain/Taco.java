@@ -19,8 +19,6 @@ public class Taco {
     @Id
     private Long id;
 
-    private Date createdAt = new Date();
-
     @NotNull
     @Size(min = 5, message = "Name must be at least 5 characters long!!!")
     private @NonNull String name;

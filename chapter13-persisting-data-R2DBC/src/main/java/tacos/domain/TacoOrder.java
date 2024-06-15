@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -45,9 +46,12 @@ public class TacoOrder {
 
     private Set<Long> tacoIds = new LinkedHashSet<>();
 
+    @Transient
     private List<Taco> tacos = new ArrayList<>();
 
     public void addTaco(Taco taco) {
         this.tacos.add(taco);
+        if (taco.getId() != null)
+            this.tacoIds.add(taco.getId());
     }
 }
