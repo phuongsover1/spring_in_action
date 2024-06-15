@@ -8,8 +8,8 @@ create table Ingredient (
 create table Taco (
     id identity,
     name varchar(50) not null,
-    ingredient_ids array
-)
+    ingredient_ids integer array
+);
 
 create table Taco_Order
 (
@@ -22,5 +22,5 @@ create table Taco_Order
     cc_number       varchar(16) not null,
     cc_expiration   varchar(5)  not null,
     cc_cvv          varchar(3)  not null,
-    taco_ids        array
-)
+    taco_ids        integer array
+);
