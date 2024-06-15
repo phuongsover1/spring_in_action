@@ -1,39 +1,34 @@
 package tacos.domain;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Taco {
 
-  @Id
-  private Long id;
-  
-  private Date createdAt = new Date();
+    @Id
+    private Long id;
 
-  @NotNull
-  @Size(min = 5, message = "Name must be at least 5 characters long!!!")
-  private @NonNull String name;
+    private Date createdAt = new Date();
 
-  private Set<Long> ingredientIds = new HashSet<>();
+    @NotNull
+    @Size(min = 5, message = "Name must be at least 5 characters long!!!")
+    private @NonNull String name;
 
-  public void addIngredient(Ingredient ingredient) {
-    ingredientIds.add(ingredient.getId());
-  }
+    private Set<Long> ingredientIds = new HashSet<>();
+
+    public void addIngredient(Ingredient ingredient) {
+        ingredientIds.add(ingredient.getId());
+    }
 
 }
