@@ -11,8 +11,8 @@ import org.springframework.messaging.rsocket.RSocketRequester;
 public class RSocketClientConfiguration {
     @Bean
     public ApplicationRunner sender(RSocketRequester.Builder requestBuilder) {
-        return args ->  {
-            RSocketRequester tcp = requestBuilder.tcp("localhost",7000);
+        return args -> {
+            RSocketRequester tcp = requestBuilder.tcp("localhost", 7000);
 
             tcp.route("greeting")
                     .data("Hello RSocket!")
@@ -25,6 +25,21 @@ public class RSocketClientConfiguration {
                     .data("Hello RSocket!")
                     .retrieveMono(String.class)
                     .subscribe(response -> log.info("Got a response: {}", response));
+
+
+            // Handling request-stream messaging
+            String stockSymbol = "XYZ";
+
+            tcp.route("stock/{symbol}", stockSymbol)
+                    .retrieveFlux(StockQuote.class)
+                    .doOnNext(stockQuote -> log.info(
+                            "Price of {} : {} (at {})",
+                            stockQuote.getSymbol(),
+                            stockQuote.getPrice(),
+                            stockQuote.getTimestamp()
+                    ))
+                    .take(10)
+                    .subscribe();
         };
     }
 }
