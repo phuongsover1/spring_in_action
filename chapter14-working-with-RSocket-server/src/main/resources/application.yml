@@ -3,4 +3,5 @@ spring:
     name: chapter14-working-with-RSocket-server
   rsocket:
     server:
-      port: 7000
+      transport: websocket
+      mapping-path: /rsocket
