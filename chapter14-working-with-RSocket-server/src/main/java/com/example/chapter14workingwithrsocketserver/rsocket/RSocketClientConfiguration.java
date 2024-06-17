@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.rsocket.RSocketRequester;
 
+import java.time.Instant;
+
 @Configuration
 @Slf4j
 public class RSocketClientConfiguration {
@@ -40,6 +42,16 @@ public class RSocketClientConfiguration {
                     ))
                     .take(10)
                     .subscribe();
+
+            // Sending fire-and-forget messages
+
+            tcp.route("alert")
+                    .data(new Alert(
+                            Alert.Level.RED, "Phuong", Instant.now()
+                    ))
+                    .send()
+                    .subscribe();
+            log.info("Alert sent");
         };
     }
 }
